@@ -3,10 +3,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Npgsql;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Discount.API.Extensions
 {
@@ -15,7 +11,7 @@ namespace Discount.API.Extensions
         public static IHost MigrateDatabase<TContext>(this IHost host, int? retry = 0)
         {
             int retryForAvailability = retry.Value;
-            
+
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
@@ -34,11 +30,11 @@ namespace Discount.API.Extensions
                         Connection = connection
                     };
 
-                    command.CommandText = "Drop table Coupon if Exist";
+                    command.CommandText = "Drop table if Exists Coupon";
                     command.ExecuteNonQuery();
 
                     command.CommandText = @"CREATE TABLE Coupon (Id SERIAL PRIMARY KEY, 
-                                                                 ProductName VARCHAR(24) NOT NULL
+                                                                 ProductName VARCHAR(24) NOT NULL,
                                                                  Description Text,
                                                                  Amount INT)";
                     command.ExecuteNonQuery();
@@ -49,21 +45,21 @@ namespace Discount.API.Extensions
                     command.CommandText = "INSERT INTO Coupon(ProductName, Description, Amount) VALUES('IPhone 7', 'My first iPhone', 996)";
                     command.ExecuteNonQuery();
 
-                    logger.LogInformation("Migrated the Postgresql database"); 
+                    logger.LogInformation("Migrated the Postgresql database");
                 }
                 catch (NpgsqlException ex)
                 {
-                    logger.LogError(ex, "An error occured while migratig DB"); 
-                    if(retryForAvailability < 50)
+                    logger.LogError(ex, "An error occured while migratig DB");
+                    if (retryForAvailability < 50)
                     {
                         retryForAvailability++;
                         System.Threading.Thread.Sleep(2000);
-                        MigrateDatabase<TContext>(host, retryForAvailability); 
+                        MigrateDatabase<TContext>(host, retryForAvailability);
                     }
                 }
 
 
-                return host; 
+                return host;
             }
         }
     }
