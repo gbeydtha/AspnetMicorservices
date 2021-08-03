@@ -42,7 +42,7 @@ namespace Discount.Grpc.Extensions
                     command.CommandText = "INSERT INTO Coupon(ProductName, Description, Amount) VALUES('MotoG', 'My first smart phone', 420)";
                     command.ExecuteNonQuery();
 
-                    command.CommandText = "INSERT INTO Coupon(ProductName, Description, Amount) VALUES('IPhone 7', 'My first iPhone', 996)";
+                    command.CommandText = "INSERT INTO Coupon(ProductName, Description, Amount) VALUES('IPhone 7', 'My first iPhone', 500)";
                     command.ExecuteNonQuery();
 
                     logger.LogInformation("Migrated the Postgresql database");
