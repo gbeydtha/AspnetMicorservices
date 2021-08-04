@@ -28,7 +28,7 @@ namespace Discount.Grpc.Services
             var coupon = await _repository.GetDiscount(request.ProductName);
             if(coupon == null)
             {
-                throw new RpcException(new Status(StatusCode.NotFound, $"Discount with ProductName = {request.ProductName} is not found")); 
+                //throw new RpcException(new Status(StatusCode.NotFound, $"Discount with ProductName = {request.ProductName} is not found")); 
             }
 
             var couponModel = _mapper.Map<CouponModel>(coupon);
@@ -39,7 +39,7 @@ namespace Discount.Grpc.Services
         {
             var coupon = _mapper.Map<Coupon>(request.Coupon);
             await _repository.CreateDiscount(coupon);
-            _logger.LogInformation("Discount is successfully created. ProductName : {ProductName}", coupon.ProductName);
+           // _logger.LogInformation("Discount is successfully created. ProductName : {ProductName}", coupon.ProductName);
 
             var couponModel = _mapper.Map<CouponModel>(coupon);
             return couponModel; 
@@ -49,7 +49,7 @@ namespace Discount.Grpc.Services
         {
             var coupon = _mapper.Map<Coupon>(request.Coupon);
             await _repository.UpdateDiscount(coupon);
-            _logger.LogInformation("Discount is successfully updated. ProductName : {ProductName}", coupon.ProductName);
+            //_logger.LogInformation("Discount is successfully updated. ProductName : {ProductName}", coupon.ProductName);
 
             var couponModel = _mapper.Map<CouponModel>(coupon);
             return couponModel;
