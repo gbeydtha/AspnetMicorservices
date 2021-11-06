@@ -1,0 +1,6 @@
+
+------------Masstransit-----------------
+
+install-package Masstransit
+install-package Masstransit.RabbitMQ
+install-package Masstransit.AspNetCore
