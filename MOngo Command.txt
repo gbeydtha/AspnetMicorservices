@@ -1,0 +1,33 @@
+#####################Mongo Command################################
+> docker exec -it shopping-mongo /bin/bash
+
+> show dbs
+> use CatalogDb
+> db.createCollection('Products')
+> 
+db.Products.insertMany(
+ 
+) 
+db.Products.insertOne(
+  {
+	"Name": "Asus Laptop",
+	"Category": "Computers",
+	"Summary": "i7, 16 Core, 16 GB Ram, 512 SSD HD",
+	"Description": "Developer PC",
+	"ImageFile": "Imagefile",
+	"Price": 1550
+  }
+)
+
+> db.Products.insertOne(
+  {
+	"Name": "HP Laptop",
+	"Category": "Computers",
+	"Summary": "i9, 16 Core, 32 GB Ram, 1T SSD HD",
+	"Description": "Cripto mining PC",
+	"ImageFile": "Imagefile",
+	"Price": 2550
+  }
+)
+
+>db.Products.find({}).pretty()

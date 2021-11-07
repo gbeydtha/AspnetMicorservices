@@ -4,3 +4,11 @@
 install-package Masstransit
 install-package Masstransit.RabbitMQ
 install-package Masstransit.AspNetCore
+
+
+#################Docker command####################################
+
+############### Run  the Docker compose 
+>> docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d
+############### Kill the image
+>> docker-compose -f docker-compose.yml -f docker-compose.override.yml down
