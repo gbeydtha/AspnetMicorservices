@@ -40,15 +40,12 @@ namespace Basket.API
             services.AddScoped<DiscountGrpcService>();
             
             //Masstransit-rabbitMQ configuration
-
             services.AddMassTransit(config => {
-
                 config.UsingRabbitMq((ctx, cfg) =>
                 {
                     cfg.Host(Configuration["EventBusSettings:HostAddress"]);
                 }); 
             });
-
             services.AddMassTransitHostedService(); 
 
             services.AddControllers();
